@@ -25,11 +25,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
     super.initState();
   }
 
-  void _removeMeal(String mealId) {
-    setState(() {
-      displayedMeals.removeWhere((meal) => meal.id == mealId);
-    });
-  }
+
 
   @override
   void didChangeDependencies() {
@@ -53,20 +49,18 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
       appBar: AppBar(
         title: Text(categoryTitle),
       ),
-      body: ListView.builder(
-        itemBuilder: (ctx, index) {
-          return MealItem(
-            id: displayedMeals[index].id,
-            title: displayedMeals[index].title,
-            imageUrl: displayedMeals[index].imageUrl,
-            duration: displayedMeals[index].duration,
-            affordability: displayedMeals[index].affordability,
-            complexity: displayedMeals[index].complexity,
-            removeItem: _removeMeal,
-          );
-        },
-        itemCount: displayedMeals.length,
-      ),
+      body: ListView.builder(itemBuilder: (ctx,index) {
+        return MealItem(
+          id: displayedMeals[index].id,
+          title: displayedMeals[index].title,
+          imageUrl: displayedMeals[index].imageUrl,
+          duration: displayedMeals[index].duration,
+          affordability: displayedMeals[index].affordability,
+          complexity: displayedMeals[index].complexity
+        );
+      },
+      itemCount: displayedMeals.length,
+      )
     );
   }
 }
